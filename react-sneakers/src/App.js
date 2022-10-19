@@ -75,6 +75,7 @@ function App() {
               name={obj.name}
               price={obj.price}
               imgUrl={obj.img}
+              addToFavorite={() => console.log(obj)}
               addToBasket={() => console.log(obj)}
             />
           ))}
