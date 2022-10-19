@@ -1,0 +1,39 @@
+@import "../../scss/mixin.scss";
+.content {
+  &__card {
+    border: 1px solid #f3f3f3;
+    padding: 20px;
+    width: 210px;
+    border-radius: 40px;
+    @include hover-card();
+    h5 {
+      font-weight: 400;
+      font-size: 14px;
+      margin-bottom: 23px;
+    }
+  }
+  &__sneakers {
+    width: 133px;
+    height: 112px;
+    margin-bottom: 23px;
+  }
+  &__favorite {
+    position: absolute;
+  }
+  &__card_bottom {
+    @include flex-container();
+  }
+  &__price {
+    @include flex-container();
+    flex-direction: column;
+    align-items: start;
+    span {
+      font-size: 13px;
+      opacity: 0.5;
+      text-transform: uppercase;
+    }
+    b {
+      font-size: 14px;
+    }
+  }
+}

@@ -1,7 +1,7 @@
 // import { Link } from "react-router-dom";
-import Drawer from "./components/Drawer";
+import Drawer from "./components/Drawer/Drawer";
 import Header from "./components/Header";
-import Card from "./components/Card";
+import Card from "./components/Card/Card";
 
 const arr = [
   {
@@ -71,7 +71,12 @@ function App() {
 
         <div className="content__cards">
           {arr.map((obj) => (
-            <Card name={obj.name} price={obj.price} imgUrl={obj.img} />
+            <Card
+              name={obj.name}
+              price={obj.price}
+              imgUrl={obj.img}
+              addToBasket={() => console.log(obj)}
+            />
           ))}
         </div>
       </section>

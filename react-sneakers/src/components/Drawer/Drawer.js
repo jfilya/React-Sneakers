@@ -1,21 +1,23 @@
+import style from './Drawer.module.scss';
+
 function Drawer() {
   return (
-    <div className="overlay">
-      <div className="drawer">
+    <div className={style.overlay}>
+      <div className={style.drawer}>
         <h2>
           Корзина
           <span className="cursor">
             <img
-              className="cart__remove cursor"
+              className={style.cart__remove + " cursor"} 
               src="img/btn-remove.svg"
               alt="remove"
             />
           </span>
         </h2>
-        <div className="cart">
-          <div className="cart__item">
+        <div className={style.cart}>
+          <div className={style.cart__item}>
             <img
-              className="cart__img"
+              className={style.cart__img}
               src="img/sneakers/1.jpg"
               alt="sneakers"
             />
@@ -24,25 +26,25 @@ function Drawer() {
               <b>12 999 руб.</b>
             </div>
             <img
-              className="cart__remove cursor"
+              className={style.cart__remove + " cursor"}
               src="img/btn-remove.svg"
               alt="remove"
             />
           </div>
         </div>
-        <ul className="drawer__total">
+        <ul className={style.drawer__total}>
           <li>
             <span>Итого:</span>
-            <div className="drawer__dot"></div>
+            <div className={style.drawer__dot}></div>
             <b>21 498 руб.</b>
           </li>
           <li>
             <span>Налог 5%:</span>
-            <div className="drawer__dot"></div>
+            <div className={style.drawer__dot}></div>
             <b>1074 руб.</b>
           </li>
         </ul>
-        <button className="drawer__btn cursor">
+        <button className={style.drawer__btn +" cursor"}>
           Оформить заказ <img src="img/arrow.svg" alt="arrow" />
         </button>
       </div>
