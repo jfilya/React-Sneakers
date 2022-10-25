@@ -4,7 +4,7 @@ import React from 'react';
 function Card(props) {
   const [isAdded, setIsAdded] = React.useState(false);
   const [isFavorite, setIsFavorite] = React.useState(false);
-  const onClickPlus = (x, y) => {
+  const onClickPlus = () => {
     setIsAdded(!isAdded);
   }
  
