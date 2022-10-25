@@ -1,12 +1,12 @@
 import style from './Drawer.module.scss';
 
-function Drawer() {
+function Drawer(props) {
   return (
     <div className={style.overlay}>
       <div className={style.drawer}>
         <h2>
           Корзина
-          <span className="cursor">
+          <span className="cursor" onClick = {props.onClose}>
             <img
               className={style.cart__remove + " cursor"} 
               src="img/btn-remove.svg"

@@ -2,6 +2,7 @@
 import Drawer from "./components/Drawer/Drawer";
 import Header from "./components/Header";
 import Card from "./components/Card/Card";
+import React from 'react';
 
 const arr = [
   {
@@ -56,10 +57,11 @@ const arr = [
   },
 ];
 function App() {
+  const [cartOpened, setCartOpened] = React.useState(false);
   return (
     <div className="wrapper">
-      <Drawer />
-      <Header />
+      {cartOpened && <Drawer onClose = {() => setCartOpened(false)}/>}
+      <Header onClickCart = {() => setCartOpened(true)} />
       <section className="content">
         <div className="content__top">
           <h1>Все кроссовки</h1>
