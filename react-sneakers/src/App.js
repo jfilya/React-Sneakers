@@ -2,66 +2,22 @@
 import Drawer from "./components/Drawer/Drawer";
 import Header from "./components/Header";
 import Card from "./components/Card/Card";
-import React from 'react';
+import React from "react";
 
-const arr = [
-  {
-    name: "Мужские Кроссовки Nike Blazer Mid Suede",
-    price: 12999,
-    img: "img/sneakers/1.jpg",
-  },
-  {
-    name: "Мужские Кроссовки Nike Air Max 270",
-    price: 15600,
-    img: "img/sneakers/2.jpg",
-  },
-  {
-    name: "Мужские Кроссовки Nike Air Max 270",
-    price: 15600,
-    img: "img/sneakers/3.jpg",
-  },
-  {
-    name: "Мужские Кроссовки Nike Air Max 270",
-    price: 15600,
-    img: "img/sneakers/4.jpg",
-  },
-  {
-    name: "Мужские Кроссовки Nike Air Max 270",
-    price: 15600,
-    img: "img/sneakers/5.jpg",
-  },
-  {
-    name: "Мужские Кроссовки Nike Air Max 270",
-    price: 15600,
-    img: "img/sneakers/6.jpg",
-  },
-  {
-    name: "Мужские Кроссовки Nike Air Max 270",
-    price: 15600,
-    img: "img/sneakers/7.jpg",
-  },
-  {
-    name: "Мужские Кроссовки Nike Air Max 270",
-    price: 15600,
-    img: "img/sneakers/8.jpg",
-  },
-  {
-    name: "Мужские Кроссовки Nike Air Max 270",
-    price: 15600,
-    img: "img/sneakers/9.jpg",
-  },
-  {
-    name: "Мужские Кроссовки Nike Air Max 270",
-    price: 15600,
-    img: "img/sneakers/10.jpg",
-  },
-];
 function App() {
+  const [items, setItems] = React.useState([]);
   const [cartOpened, setCartOpened] = React.useState(false);
+
+  React.useEffect(() => {
+    fetch("https://6358eac7ff3d7bddb993de7c.mockapi.io/items")
+      .then((res) => res.json())
+      .then((json) => setItems(json));
+  }, []);
+
   return (
     <div className="wrapper">
-      {cartOpened && <Drawer onClose = {() => setCartOpened(false)}/>}
-      <Header onClickCart = {() => setCartOpened(true)} />
+      {cartOpened && <Drawer onClose={() => setCartOpened(false)} />}
+      <Header onClickCart={() => setCartOpened(true)} />
       <section className="content">
         <div className="content__top">
           <h1>Все кроссовки</h1>
@@ -72,7 +28,7 @@ function App() {
         </div>
 
         <div className="content__cards">
-          {arr.map((obj) => (
+          {items.map((obj) => (
             <Card
               name={obj.name}
               price={obj.price}
