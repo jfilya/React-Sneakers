@@ -1,11 +1,12 @@
 import style from "./Card.module.scss";
 import React from 'react';
 
-function Card(props) {
+function Card({name, imgUrl, price, addToFavorite ,addToBasket}) {
   const [isAdded, setIsAdded] = React.useState(false);
   const [isFavorite, setIsFavorite] = React.useState(false);
   const onClickPlus = () => {
     setIsAdded(!isAdded);
+    addToBasket({name, imgUrl, price}); 
   }
  
   const onClickFavorite = () => {
@@ -21,14 +22,14 @@ function Card(props) {
       />
       <img
         className={style.content__sneakers}
-        src={props.imgUrl}
+        src={imgUrl}
         alt="sneakers"
       />
-      <h5>{props.name}</h5>
+      <h5>{name}</h5>
       <div className={style.content__card_bottom}>
         <div className={style.content__price}>
           <span>Цена:</span>
-          <b>{props.price} руб.</b>
+          <b>{price} руб.</b>
         </div>
         <img
           className={"cursor " + style.content__plus}
