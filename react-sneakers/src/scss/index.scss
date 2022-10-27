@@ -84,6 +84,12 @@ body {
       outline: none;
     }
   }
+  &__search-clear {
+    position: absolute;
+    right: 10px;
+    width: 18px;
+    height: 18px;
+  }
   &__cards {
     @include flex-container();
     flex-wrap: wrap;
@@ -92,5 +98,3 @@ body {
 .cursor {
   cursor: pointer;
 }
-
-
