@@ -8,3 +8,4 @@ Stack:
 - SCSS
 - React Context
 - React Skeleton
+- mockAPI
