@@ -1,6 +1,7 @@
 import style from "./Drawer.module.scss";
 
-function Drawer({ onClose, items = [] }) {
+function Drawer({ onClose, onRemove, items = [] }) {
+  console.log(items);
   return (
     <div className={style.overlay}>
       <div className={style.drawer}>
@@ -19,7 +20,7 @@ function Drawer({ onClose, items = [] }) {
             <div className={style.cart__item}>
               <img
                 className={style.cart__img}
-                src={`${obj.imgUrl}`}
+                src={`${obj.img}`}
                 alt="sneakers"
               />
               <div>
@@ -27,6 +28,7 @@ function Drawer({ onClose, items = [] }) {
                 <b>{`${obj.price}`} руб.</b>
               </div>
               <img
+                onClick={() => onRemove(obj.id)}
                 className={style.cart__remove + " cursor"}
                 src="img/btn-remove.svg"
                 alt="remove"

@@ -1,12 +1,12 @@
 import style from "./Card.module.scss";
 import React from 'react';
 
-function Card({name, imgUrl, price, addToFavorite ,addToBasket}) {
+function Card({name, img, price, addToFavorite ,addToBasket}) {
   const [isAdded, setIsAdded] = React.useState(false);
   const [isFavorite, setIsFavorite] = React.useState(false);
   const onClickPlus = () => {
     setIsAdded(!isAdded);
-    addToBasket({name, imgUrl, price}); 
+    addToBasket({name, img, price}); 
   }
  
   const onClickFavorite = () => {
@@ -22,7 +22,7 @@ function Card({name, imgUrl, price, addToFavorite ,addToBasket}) {
       />
       <img
         className={style.content__sneakers}
-        src={imgUrl}
+        src={img}
         alt="sneakers"
       />
       <h5>{name}</h5>
