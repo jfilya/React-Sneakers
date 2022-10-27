@@ -36,6 +36,7 @@ function App() {
         <div className="content__cards">
           {items.map((item) => (
             <Card
+              key={item.name + item.price}
               name={item.name}
               price={item.price}
               imgUrl={item.img}
