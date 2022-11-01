@@ -1,17 +1,18 @@
 import style from "./Card.module.scss";
-import React from 'react';
+import React from "react";
 
-function Card({name, img, price, addToFavorite ,addToBasket}) {
+function Card({ name, img, price, id, addToFavorite, addToBasket }) {
   const [isAdded, setIsAdded] = React.useState(false);
   const [isFavorite, setIsFavorite] = React.useState(false);
   const onClickPlus = () => {
     setIsAdded(!isAdded);
-    addToBasket({name, img, price}); 
-  }
- 
+    addToBasket({ name, img, price, id });
+  };
+
   const onClickFavorite = () => {
     setIsFavorite(!isFavorite);
-  }
+    addToFavorite({ name, img, price, id });
+  };
   return (
     <div className={style.content__card}>
       <img
@@ -20,11 +21,7 @@ function Card({name, img, price, addToFavorite ,addToBasket}) {
         src={isFavorite ? "img/liked.svg" : "img/heart.svg"}
         alt="heart"
       />
-      <img
-        className={style.content__sneakers}
-        src={img}
-        alt="sneakers"
-      />
+      <img className={style.content__sneakers} src={img} alt="sneakers" />
       <h5>{name}</h5>
       <div className={style.content__card_bottom}>
         <div className={style.content__price}>
