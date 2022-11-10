@@ -64,7 +64,10 @@ function Drawer({ onClose, onRemove, items = [] }) {
             />
             <h2>Корзина пуста</h2>
             <p>Для оформления заказа добавьте товар в корзину</p>
-            <button className={style.drawer__back + " cursor"}  onClick={onClose}>
+            <button
+              className={style.drawer__back + " cursor"}
+              onClick={onClose}
+            >
               <img src="img/arrow.svg" alt="arrow" /> Назад
             </button>
           </div>

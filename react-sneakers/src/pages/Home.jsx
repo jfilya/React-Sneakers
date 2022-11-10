@@ -38,7 +38,7 @@ function Home({
           )
           .map((item) => (
             <Card
-              key={item.name + item.price}
+              key={item.name + item.price + item.id}
               name={item.name}
               price={item.price}
               img={item.img}

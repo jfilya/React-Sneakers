@@ -40,9 +40,23 @@ function App() {
     setSearchValue(event.target.value);
   };
 
-  const addToFavorite = (el) => {
-    axios.post("https://6358eac7ff3d7bddb993de7c.mockapi.io/favorite", el);
-    setFavoriteItem((prev) => [...prev, el]);
+  const addToFavorite = async (el) => {
+    try {
+      if (favoriteItem.find((obj) => obj.id === el.id)) {
+        axios.delete(
+          `https://6358eac7ff3d7bddb993de7c.mockapi.io/favorite/${el.id}`
+        );
+        setFavoriteItem((prev) => prev.filter((item) => item.id !== el.id));
+      } else {
+        const { data } = await axios.post(
+          "https://6358eac7ff3d7bddb993de7c.mockapi.io/favorite",
+          el
+        );
+        setFavoriteItem((prev) => [...prev, data]);
+      }
+    } catch (error) {
+      console.log("Не удалось добавить товары в избранное");
+    }
   };
 
   return (
