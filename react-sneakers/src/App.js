@@ -28,13 +28,25 @@ function App() {
       .then((res) => setFavoriteItem(res.data));
   }, []);
 
-  const addToCart = (el) => {
-    axios.post("https://6358eac7ff3d7bddb993de7c.mockapi.io/cart", el);
-    setCartItems((prev) => [...prev, el]);
+  const addToCart = async (el) => {
+    try {
+      if (cartItems.find((obj) => obj.id === el.id)) {
+        axios.delete(
+            `https://6358eac7ff3d7bddb993de7c.mockapi.io/cart/${el.id}`
+        );
+        setCartItems((prev) => prev.filter((item) => item.id !== el.id));
+      } else {
+        const { data } = await axios.post("https://6358eac7ff3d7bddb993de7c.mockapi.io/cart", el);
+        setCartItems((prev) => [...prev, data]);
+      }
+    } catch (error) {
+      console.log("Не удалось добавить товары в корзину");
+    }
   };
   const removeItemCart = (id) => {
     axios.delete(`https://6358eac7ff3d7bddb993de7c.mockapi.io/cart/${id}`);
     setCartItems((prev) => prev.filter((item) => item.id !== id));
+
   };
   const onChangeSearchInput = (event) => {
     setSearchValue(event.target.value);
