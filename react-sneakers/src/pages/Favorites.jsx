@@ -13,10 +13,9 @@ function Favorites({ items, addToFavorite, addToCart }) {
                 name={item.name}
                 price={item.price}
                 img={item.img}
-                id={item.id}
                 addToFavorite={(obj) => addToFavorite(obj)}
                 addToBasket={(obj) => addToCart(obj)}
-                favorited={true}
+                favoriteId={true}
               />
             ))
           : `Пусто`}
