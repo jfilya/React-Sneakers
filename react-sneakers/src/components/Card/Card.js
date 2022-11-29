@@ -1,17 +1,17 @@
 import style from "./Card.module.scss";
 import React from "react";
 
-function Card({ name, img, price, id, addToFavorite, addToBasket, favorited=false }) {
-  const [isAdded, setIsAdded] = React.useState(false);
-  const [isFavorite, setIsFavorite] = React.useState(favorited);
+function Card({ name, img, price, addToFavorite, addToBasket, favoriteId=false, added = false}) {
+
+  const [isAdded, setIsAdded] = React.useState(added);
+  const [isFavorite, setIsFavorite] = React.useState(favoriteId);
   const onClickPlus = () => {
     setIsAdded(!isAdded);
-    addToBasket({ name, img, price, id });
+    addToBasket({ name, img, price });
   };
-
   const onClickFavorite = () => {
     setIsFavorite(!isFavorite);
-    addToFavorite({ name, img, price, id });
+    addToFavorite({ name, img, price });
   };
   return (
     <div className={style.content__card}>
@@ -29,7 +29,7 @@ function Card({ name, img, price, id, addToFavorite, addToBasket, favorited=fals
           <b>{price} руб.</b>
         </div>
         <img
-          className={"cursor " + style.content__plus}
+          className={"cursor "}
           onClick={onClickPlus}
           src={isAdded ? "img/btn-checked.svg" : "img/btn-plus.svg"}
           alt="plus"

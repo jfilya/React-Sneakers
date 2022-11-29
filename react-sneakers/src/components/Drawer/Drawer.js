@@ -1,7 +1,6 @@
 import style from "./Drawer.module.scss";
 
 function Drawer({ onClose, onRemove, items = [] }) {
-  console.log(items);
   return (
     <div className={style.overlay}>
       <div className={style.drawer}>

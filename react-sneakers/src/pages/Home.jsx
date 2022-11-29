@@ -7,6 +7,8 @@ function Home({
   onChangeSearchInput,
   addToFavorite,
   addToCart,
+  cartItems,
+  favoriteItem,
 }) {
   return (
     <section className="content">
@@ -42,9 +44,10 @@ function Home({
               name={item.name}
               price={item.price}
               img={item.img}
-              id={item.id}
               addToFavorite={(obj) => addToFavorite(obj)}
               addToBasket={(obj) => addToCart(obj)}
+              added = {cartItems.some(obj => obj.name === item.name)}
+              favoriteId = {favoriteItem.some(obj => obj.name === item.name)}
             />
           ))}
       </div>
