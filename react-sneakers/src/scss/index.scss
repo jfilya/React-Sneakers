@@ -110,6 +110,7 @@ a {
   &__cards {
     @include flex-container();
     flex-wrap: wrap;
+    grid-row-gap: 20px;
   }
 }
 .cursor {
