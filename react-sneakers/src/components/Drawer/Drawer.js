@@ -16,7 +16,7 @@ function Drawer({ onClose, onRemove, items = [] }) {
         </h2>
 
         {items.length ? (
-          <div>
+          <>
             <div className={style.cart}>
               {items.map((obj) => (
                 <div className={style.cart__item}>
@@ -53,7 +53,7 @@ function Drawer({ onClose, onRemove, items = [] }) {
             <button className={style.drawer__btn + " cursor"}>
               Оформить заказ <img src="img/arrow.svg" alt="arrow" />
             </button>
-          </div>
+          </>
         ) : (
           <div className={style.drawer__empty}>
             <img

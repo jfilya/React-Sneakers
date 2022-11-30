@@ -6,6 +6,8 @@ import axios from "axios";
 import {Routes, Route} from "react-router-dom";
 import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
+export const AppContext = React.createContext({})
+
 
 function App() {
   const [items, setItems] = React.useState([]);
@@ -71,43 +73,49 @@ function App() {
     }
   };
 
-  return (<div className="wrapper">
-    {cartOpened && (<Drawer
-      items={cartItems}
-      onClose={() => setCartOpened(false)}
-      onRemove={removeItemCart}
-    />)}
-    <Header onClickCart={() => setCartOpened(true)}/>
+  return (
+    <AppContext.Provider value={{items, cartItems, favoriteItem}}>
+      <div className="wrapper">
+        {cartOpened && (
+          <Drawer
+          items={cartItems}
+          onClose={() => setCartOpened(false)}
+          onRemove={removeItemCart}
+        />
+        )}
+        <Header onClickCart={() => setCartOpened(true)}/>
 
-    <Routes>
-      <Route
-        exact
-        path="/favorites"
-        element={<Favorites
-          items={favoriteItem}
-          addToCart={addToCart}
-          addToFavorite={addToFavorite}
-        />}
-      />
-    </Routes>
-    <Routes>
-      <Route
-        exact
-        path="/"
-        element={<Home
-          items={items}
-          cartItems={cartItems}
-          favoriteItem={favoriteItem}
-          searchValue={searchValue}
-          setSearchValue={setSearchValue}
-          addToCart={addToCart}
-          onChangeSearchInput={onChangeSearchInput}
-          addToFavorite={addToFavorite}
-          isLoading={isLoading}
-        />}
-      />
-    </Routes>
-  </div>);
+        <Routes>
+          <Route
+            exact
+            path="/favorites"
+            element={<Favorites
+              // items={favoriteItem}
+              addToCart={addToCart}
+              addToFavorite={addToFavorite}
+            />}
+          />
+        </Routes>
+        <Routes>
+          <Route
+            exact
+            path="/"
+            element={<Home
+              items={items}
+              cartItems={cartItems}
+              favoriteItem={favoriteItem}
+              searchValue={searchValue}
+              setSearchValue={setSearchValue}
+              addToCart={addToCart}
+              onChangeSearchInput={onChangeSearchInput}
+              addToFavorite={addToFavorite}
+              isLoading={isLoading}
+            />}
+          />
+        </Routes>
+      </div>
+    </AppContext.Provider>
+  );
 }
 
 export default App;
