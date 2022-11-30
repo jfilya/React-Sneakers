@@ -6,6 +6,7 @@ import axios from "axios";
 import {Routes, Route} from "react-router-dom";
 import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
+
 export const AppContext = React.createContext({})
 
 
@@ -72,16 +73,16 @@ function App() {
       console.log("Не удалось добавить товары в избранное");
     }
   };
-
+  const isItemAdded = (name) => cartItems.some(obj => obj.name === name)
   return (
-    <AppContext.Provider value={{items, cartItems, favoriteItem}}>
+    <AppContext.Provider value={{items, cartItems, favoriteItem, isItemAdded}}>
       <div className="wrapper">
         {cartOpened && (
           <Drawer
-          items={cartItems}
-          onClose={() => setCartOpened(false)}
-          onRemove={removeItemCart}
-        />
+            items={cartItems}
+            onClose={() => setCartOpened(false)}
+            onRemove={removeItemCart}
+          />
         )}
         <Header onClickCart={() => setCartOpened(true)}/>
 
@@ -89,28 +90,28 @@ function App() {
           <Route
             exact
             path="/favorites"
-            element={<Favorites
-              // items={favoriteItem}
-              addToCart={addToCart}
-              addToFavorite={addToFavorite}
-            />}
+            element={
+              <Favorites
+                addToCart={addToCart}
+                addToFavorite={addToFavorite}
+              />
+            }
           />
         </Routes>
         <Routes>
           <Route
             exact
             path="/"
-            element={<Home
-              items={items}
-              cartItems={cartItems}
-              favoriteItem={favoriteItem}
-              searchValue={searchValue}
-              setSearchValue={setSearchValue}
-              addToCart={addToCart}
-              onChangeSearchInput={onChangeSearchInput}
-              addToFavorite={addToFavorite}
-              isLoading={isLoading}
-            />}
+            element={
+              <Home
+                searchValue={searchValue}
+                setSearchValue={setSearchValue}
+                addToCart={addToCart}
+                onChangeSearchInput={onChangeSearchInput}
+                addToFavorite={addToFavorite}
+                isLoading={isLoading}
+              />
+            }
           />
         </Routes>
       </div>

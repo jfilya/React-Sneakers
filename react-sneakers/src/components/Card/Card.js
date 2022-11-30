@@ -1,7 +1,7 @@
 import style from "./Card.module.scss";
 import React from "react";
 import ContentLoader from "react-content-loader"
-
+import {AppContext} from '../../App'
 function Card({
                 name,
                 img,
@@ -12,11 +12,9 @@ function Card({
                 added = false,
                 loading = false,
               }) {
-
-  const [isAdded, setIsAdded] = React.useState(added);
+  const { isItemAdded } = React.useContext(AppContext);
   const [isFavorite, setIsFavorite] = React.useState(favoriteId);
   const onClickPlus = () => {
-    setIsAdded(!isAdded);
     addToBasket({name, img, price});
   };
   const onClickFavorite = () => {
@@ -54,7 +52,7 @@ function Card({
           <img
             className={"cursor "}
             onClick={onClickPlus}
-            src={isAdded ? "img/btn-checked.svg" : "img/btn-plus.svg"}
+            src={isItemAdded(name) ? "img/btn-checked.svg" : "img/btn-plus.svg"}
             alt="plus"
           />
         </div>
