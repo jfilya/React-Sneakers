@@ -1,4 +1,5 @@
 @import "../../scss/mixin.scss";
+
 .overlay {
   width: 100%;
   height: 100%;
@@ -8,6 +9,7 @@
   position: fixed;
   z-index: 2;
 }
+
 .drawer {
   position: absolute;
   width: 385px;
@@ -19,32 +21,43 @@
   padding: 30px;
   display: flex;
   flex-direction: column;
+
   h2 {
     margin-bottom: 30px;
     @include flex-container();
   }
+
   &__total {
     margin-bottom: 20px;
+
     li {
       @include flex-container();
       align-items: flex-end;
       margin-bottom: 20px;
     }
   }
+
   &__dot {
     border-bottom: 1px dashed #dfdfdf;
     flex: 1;
     margin: 0 7px;
   }
+
   &__btn {
     @include button();
     position: relative;
+
+    &:disabled {
+      background: #bebebe;
+      cursor: default;
+    }
 
     &:hover {
       img {
         transform: translateX(5px);
       }
     }
+
     img {
       position: absolute;
       right: 30px;
@@ -52,15 +65,18 @@
       transition: 0.2s;
     }
   }
+
   &__back {
     @include button();
     position: relative;
     max-width: 250px;
+
     &:hover {
       img {
         transform: rotate(180deg) translateX(5px);
       }
     }
+
     img {
       position: absolute;
       left: 30px;
@@ -69,15 +85,17 @@
       transform: rotate(180deg);
     }
   }
+
   &__empty {
     @include flex-container();
     flex-direction: column;
     margin-top: 50%;
+
     &_img {
       width: 120px;
-      height: 120px;
       margin-bottom: 20px;
     }
+
     p {
       text-align: center;
       opacity: 0.6;
@@ -85,18 +103,22 @@
     }
   }
 }
+
 .cart {
   flex: 1;
   overflow-y: scroll;
+
   &::-webkit-scrollbar {
     width: 2px;
     height: 0px;
     background-color: transparent;
   }
+
   &::-webkit-scrollbar-thumb {
     background-color: #858585;
     border-radius: 9em;
   }
+
   &__item {
     @include flex-container();
     border: 1px solid #f3f3f3;
@@ -105,23 +127,28 @@
     padding: 20px;
     margin-bottom: 20px;
     @include hover-card();
+
     p {
       margin-bottom: 5px;
       max-width: 176px;
       font-size: 14px;
     }
+
     b {
       font-size: 13px;
     }
   }
+
   &__img {
     width: 70px;
     height: 70px;
     margin-right: 20px;
   }
+
   &__remove {
     opacity: 0.5;
     transition: 0.2s;
+
     &:hover {
       opacity: 1;
     }
