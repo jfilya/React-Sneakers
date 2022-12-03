@@ -5,7 +5,7 @@ import {AppContext} from "../../App";
 import axios from "axios";
 
 
-function Drawer({onClose, onRemove, items = []}) {
+function Drawer({onClose, onRemove, items = [], cartOpened}) {
   const {cartItems, setCartItems} = React.useContext(AppContext);
   const [orderComplete, setOrderComplete] = React.useState(false)
   const [orderId, setOrderId] = React.useState(null)
@@ -27,7 +27,7 @@ function Drawer({onClose, onRemove, items = []}) {
     setIsLoading(false);
   }
   return (
-    <div className={style.overlay}>
+    <div className={`${style.overlay}  ${cartOpened ? style.overlayVisible : ""}`}>
       <div className={style.drawer}>
         <h2>
           Корзина
@@ -67,12 +67,12 @@ function Drawer({onClose, onRemove, items = []}) {
               <li>
                 <span>Итого:</span>
                 <div className={style.drawer__dot}></div>
-                <b>{cartItems.reduce((sum, obj) => sum+ obj.price,0)} руб.</b>
+                <b>{cartItems.reduce((sum, obj) => sum + obj.price, 0)} руб.</b>
               </li>
               <li>
                 <span>Налог 5%:</span>
                 <div className={style.drawer__dot}></div>
-                <b>{cartItems.reduce((sum, obj) => sum+ obj.price,0) / 100 * 5} руб.</b>
+                <b>{cartItems.reduce((sum, obj) => sum + obj.price, 0) / 100 * 5} руб.</b>
               </li>
             </ul>
             <button disabled={isLoading} onClick={onClickOrder} className={style.drawer__btn + " cursor"}>

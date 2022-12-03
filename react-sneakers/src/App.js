@@ -7,6 +7,7 @@ import {Routes, Route} from "react-router-dom";
 import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
 import Orders from "./pages/Orders"
+
 export const AppContext = React.createContext({})
 
 
@@ -26,11 +27,9 @@ function App() {
       const favoritesResponse = await axios.get("https://6358eac7ff3d7bddb993de7c.mockapi.io/favorite")
       const itemsResponse = await axios.get("https://6358eac7ff3d7bddb993de7c.mockapi.io/items")
 
-
       setFavoriteItem(favoritesResponse.data)
       setCartItems(cartResponse.data)
       setItems(itemsResponse.data)
-
 
       setIsLoading(false)
     };
@@ -80,13 +79,14 @@ function App() {
   return (
     <AppContext.Provider value={{items, cartItems, favoriteItem, isItemAdded, setCartOpened, setCartItems}}>
       <div className="wrapper">
-        {cartOpened && (
-          <Drawer
-            items={cartItems}
-            onClose={() => setCartOpened(false)}
-            onRemove={removeItemCart}
-          />
-        )}
+
+        <Drawer
+          items={cartItems}
+          onClose={() => setCartOpened(false)}
+          onRemove={removeItemCart}
+          cartOpened={cartOpened}
+        />
+
         <Header
           onClickCart={() => setCartOpened(true)}
         />

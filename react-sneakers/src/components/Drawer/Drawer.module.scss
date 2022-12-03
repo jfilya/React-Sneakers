@@ -8,8 +8,17 @@
   background: #00000080;
   position: fixed;
   z-index: 2;
+  visibility: hidden;
+  opacity:0;
+  transform: translate(100%);
+  transition:  0.3s;
 }
-
+.overlayVisible {
+  visibility: visible;
+  opacity:1;
+  transform: translate(0%);
+  transition: 0.3s;
+}
 .drawer {
   position: absolute;
   width: 385px;
