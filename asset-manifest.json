@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/jfilya/react-sneakers/static/css/main.99b2a52a.css",
+    "main.js": "/jfilya/react-sneakers/static/js/main.040c72ec.js",
+    "index.html": "/jfilya/react-sneakers/index.html",
+    "main.99b2a52a.css.map": "/jfilya/react-sneakers/static/css/main.99b2a52a.css.map",
+    "main.040c72ec.js.map": "/jfilya/react-sneakers/static/js/main.040c72ec.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.99b2a52a.css",
+    "static/js/main.040c72ec.js"
+  ]
+}
