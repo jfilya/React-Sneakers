@@ -1,9 +1,9 @@
-// import { Link } from "react-router-dom";
-import Drawer from "./components/Drawer/Drawer";
-import Header from "./components/Header";
 import React from "react";
 import axios from "axios";
+
 import {Routes, Route} from "react-router-dom";
+import Drawer from "./components/Drawer/Drawer";
+import Header from "./components/Header";
 import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
 import Orders from "./pages/Orders"
@@ -22,18 +22,24 @@ function App() {
 
   React.useEffect(() => {
     async function fetchData() {
-      setIsLoading(true)
-      const cartResponse = await axios.get("https://6358eac7ff3d7bddb993de7c.mockapi.io/cart")
-      const favoritesResponse = await axios.get("https://6358eac7ff3d7bddb993de7c.mockapi.io/favorite")
-      const itemsResponse = await axios.get("https://6358eac7ff3d7bddb993de7c.mockapi.io/items")
+      try {
+        const [cartResponse, favoritesResponse, itemsResponse] = await Promise.all([
+          axios.get("https://6358eac7ff3d7bddb993de7c.mockapi.io/cart"),
+          axios.get("https://6358eac7ff3d7bddb993de7c.mockapi.io/favorite"),
+          axios.get("https://6358eac7ff3d7bddb993de7c.mockapi.io/items")
+        ])
+        setIsLoading(true)
 
-      setFavoriteItem(favoritesResponse.data)
-      setCartItems(cartResponse.data)
-      setItems(itemsResponse.data)
+        setFavoriteItem(favoritesResponse.data)
+        setCartItems(cartResponse.data)
+        setItems(itemsResponse.data)
 
-      setIsLoading(false)
+        setIsLoading(false)
+      } catch (error) {
+        alert("Ошибка при запросе данных")
+        console.log(error)
+      }
     };
-
     fetchData()
   }, []);
 
@@ -49,13 +55,20 @@ function App() {
       }
     } catch (error) {
       console.log("Не удалось добавить товары в корзину");
+      console.log(error)
     }
   };
   const removeItemCart = (id) => {
-    axios.delete(`https://6358eac7ff3d7bddb993de7c.mockapi.io/cart/${id}`);
-    setCartItems((prev) => prev.filter((item) => item.id !== id));
+    try {
+      axios.delete(`https://6358eac7ff3d7bddb993de7c.mockapi.io/cart/${id}`);
+      setCartItems((prev) => prev.filter((item) => item.id !== id));
+    } catch (error) {
+      alert("Ошибка при запросе данных")
+      console.log(error)
+    }
+  }
 
-  };
+
   const onChangeSearchInput = (event) => {
     setSearchValue(event.target.value);
   };
@@ -71,7 +84,7 @@ function App() {
         setFavoriteItem((prev) => [...prev, data]);
       }
     } catch (error) {
-
+      console.log(error)
       console.log("Не удалось добавить товары в избранное");
     }
   };
