@@ -6,7 +6,7 @@ import axios from "axios";
 import {Routes, Route} from "react-router-dom";
 import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
-
+import Orders from "./pages/Orders"
 export const AppContext = React.createContext({})
 
 
@@ -18,6 +18,7 @@ function App() {
   const [cartOpened, setCartOpened] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(true);
 
+
   React.useEffect(() => {
     async function fetchData() {
       setIsLoading(true)
@@ -25,12 +26,14 @@ function App() {
       const favoritesResponse = await axios.get("https://6358eac7ff3d7bddb993de7c.mockapi.io/favorite")
       const itemsResponse = await axios.get("https://6358eac7ff3d7bddb993de7c.mockapi.io/items")
 
+
       setFavoriteItem(favoritesResponse.data)
       setCartItems(cartResponse.data)
       setItems(itemsResponse.data)
 
+
       setIsLoading(false)
-    }
+    };
 
     fetchData()
   }, []);
@@ -94,6 +97,18 @@ function App() {
             path="/favorites"
             element={
               <Favorites
+                addToCart={addToCart}
+                addToFavorite={addToFavorite}
+              />
+            }
+          />
+        </Routes>
+        <Routes>
+          <Route
+            exact
+            path="/orders"
+            element={
+              <Orders
                 addToCart={addToCart}
                 addToFavorite={addToFavorite}
               />

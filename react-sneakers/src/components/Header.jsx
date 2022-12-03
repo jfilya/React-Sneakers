@@ -19,7 +19,7 @@ function Header(props) {
       <ul className="header__right">
         <li onClick={props.onClickCart} className="cursor">
           <img className="header__cart" src="img/cart.svg" alt="cart"/>
-          <span>{cartItems.reduce((sum, obj) => sum+ obj.price,0)} руб.</span>
+          <span>{cartItems.reduce((sum, obj) => sum + obj.price, 0)} руб.</span>
         </li>
         <li className="header__favorite cursor">
           <Link to="/favorites">
@@ -27,7 +27,9 @@ function Header(props) {
           </Link>
         </li>
         <li className="cursor">
-          <img className="header__user" src="img/user.svg" alt="user"/>
+          <Link to="/orders">
+            <img className="header__user" src="img/user.svg" alt="user"/>
+          </Link>
         </li>
       </ul>
     </header>
