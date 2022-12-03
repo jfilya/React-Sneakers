@@ -10,7 +10,7 @@ function Home({
                 addToCart,
                 isLoading,
               }) {
-  const {items, cartItems, favoriteItem, isItemAdded} = React.useContext(AppContext);
+  const {items, isItemAdded} = React.useContext(AppContext);
   const renderItems = () => {
     return (
       isLoading
@@ -23,7 +23,6 @@ function Home({
           {...item}
           addToFavorite={(obj) => addToFavorite(obj)}
           addToBasket={(obj) => addToCart(obj)}
-          // added={cartItems.some(obj => obj.name === item.name)}
           favoriteId={() => isItemAdded(item && item.name)}
           loading={isLoading}
         />
