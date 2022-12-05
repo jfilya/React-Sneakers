@@ -107,7 +107,7 @@ function App() {
         <Routes>
           <Route
             exact
-            path="favorites"
+            path="/react-sneakers/favorites"
             element={
               <Favorites
                 addToCart={addToCart}
@@ -119,7 +119,7 @@ function App() {
         <Routes>
           <Route
             exact
-            path="orders"
+            path="/react-sneakers/orders"
             element={
               <Orders
                 addToCart={addToCart}
@@ -131,7 +131,7 @@ function App() {
         <Routes>
           <Route
             exact
-            path=""
+            path="/react-sneakers/"
             element={
               <Home
                 searchValue={searchValue}
