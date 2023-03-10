@@ -6,7 +6,7 @@ function Header(props) {
   const {cartItems} = React.useContext(AppContext);
   return (
     <header className="header">
-      <Link to="/react-sneakers/">
+      <Link to="/">
         <div className="header__left cursor">
           <img className="header__logo" src="img/logo.png" alt="logo"/>
           <div className="header__logo-text">
@@ -22,12 +22,12 @@ function Header(props) {
           <span>{cartItems.reduce((sum, obj) => sum + obj.price, 0)} руб.</span>
         </li>
         <li className="header__favorite cursor">
-          <Link to="/react-sneakers/favorites">
+          <Link to="/favorites">
             <img src="img/favorite.svg" alt="heart"/>
           </Link>
         </li>
         <li className="cursor">
-          <Link to="/react-sneakers/orders">
+          <Link to="/orders">
             <img className="header__user" src="img/user.svg" alt="user"/>
           </Link>
         </li>
